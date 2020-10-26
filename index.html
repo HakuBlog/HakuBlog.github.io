@@ -169,96 +169,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://njuhaku.github.io/uncategorized/2020/10/26/Blog1.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/Haku.jpg">
-      <meta itemprop="name" content="Haku">
-      <meta itemprop="description" content="We are stardust.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Haku's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/uncategorized/2020/10/26/Blog1.html" class="post-title-link" itemprop="url">理论力学（一）：从矢量力学到分析力学</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-10-26 15:30:24 / 修改时间：15:33:22" itemprop="dateCreated datePublished" datetime="2020-10-26T15:30:24+08:00">2020-10-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>###前言<br>作为理论笔记的第一篇，我准备首先回顾一下矢量力学。此后，我们逐渐将矢量力学抽象化。拥有鲜明物理图像的经典力学虽然很方便我们理解，但抽象的数学往往更方便推广。虽然分析力学只是一个将经典力学高度数学化的表述。但它却充当了一个从经典到量子，统计物理的跳板，我们很容易能够在分析力学的基础上去做一些类比于推广。这对于矢量力学是不容易做到的。本篇的难度不算高，在矢量力学回顾部分，我会尽力写出其中的计算过程。之后我们引入了广义坐标，约束等一些很重要的概念。达朗贝尔原理虽然与之后的分析力学的方法有较大差别，但其同变分原理的出发点是一样的，最终的结果也是将矢量方程化作一个标量方程组。对于达朗贝尔原理的学习可以帮助跳出经典力学的范式。</p>
-<hr>
-<p>###1.1 矢量力学回顾</p>
-<p><strong>矢量力学</strong> 是我们所熟知的经典力学的表述。从初中，高中起所学习的力学就是矢量力学部分。我们用一个矢量来描述物体运动的位置，速度，加速度（运动学）；或是用矢量表示力（动力学）。在矢量力学回顾部分中，我们简要介绍牛顿定律，伽利略变换，惯性力。有关静力学等其他部分，将在分析力学的对应部分前进行回顾。</p>
-<p>牛顿定律是连接运动学与动力学的关键部分，更是矢量力学体系的重要理论基础<a href="#ref1">$^{[1]}$</a></p>
-<ol>
-<li><strong>牛顿第一定律（定义了惯性系）</strong>：如果物体处于静止状态，或呈匀速直线运动，只要没有外力作用，物体将保持静止状态，或呈匀速直线运动之状态。这定律又称为惯性定律。</li>
-<li><strong>牛顿第二定律（加速度与力的关系）</strong>：物体的加速度，与所受的净外力成正比。加速度的方向与净外力的方向相同。即$$<br>\vec{F}=m\vec{a} \tag{1.1.1}<br>$$</li>
-<li><strong>牛顿第三定律（力作用的相互性）</strong>：两个物体的相互作用力总是大小相等，方向相反，同时出现或消失。</li>
-</ol>
-<p>我们对牛顿定律做一些简单说明：牛顿第一定律不是牛顿第二定律的一个特殊情况，而是一个重要基础：牛顿第一定律定义了 <strong>惯性系</strong>，只有在惯性系中牛顿第三定律才成立。惯性系是一种 <strong>参考系</strong>，其本质上是一个仿射空间 (affine space)<a href="#ref1">$^{[2]}$</a>，在给定一个原点之后，我们就可以按照一定规则给出坐标（此时成为欧几里得空间）。</p>
-<p><strong>伽利略变换</strong> (Galilean transformation) 联系起了不同的惯性系。对于 $S$ 系中某一时刻质点 $(\bm{r},t)$，变换到 $S’$ 系中，对应伽利略变换 $G(R,v,a,s)$ 给出<a href="#ref1">$^{[3]}$</a>：$$<br>\begin{pmatrix}<br>\bm{R} &amp; \bm{v} &amp; \bm{a}\<br>0 &amp; 1 &amp; s\<br>0 &amp; 0 &amp; 1\<br>\end{pmatrix}\begin{pmatrix}<br>\bm{r} \<br>t \<br>1 \<br>\end{pmatrix}=<br>\begin{pmatrix}<br>\bm{Rx}+\bm{v}t+\bm{a} \<br>t+s \<br>1 \<br>\end{pmatrix} \tag{1.1.2}<br>$$<br>由此给出的伽利略变换对应的矩阵中：$\bm{R}$ 表示旋转矩阵（惯性系之间的取向可以不同），$\bm{v}$ 表示相对速度（惯性系之间可以相差一个恒定的速度），$a$ 表示前后原点相差的位置矢量，$s$ 表示变换前后相差的时间 （虽然在经典力学中，我们一般不进行这种考虑）。不难证明，伽利略变换 $G$ 对于矩阵乘法是封闭的，且存在恒元，逆元：</p>
-<ul>
-<li>$G(R’,v’,a’,s’) \cdot G(R,v,a,s)=G(R’R,R’v+v’,R’a+a’+v’s,s’+s) $</li>
-<li>$G(I,0,0,0)=I_{G}$</li>
-<li>$G^{-1}(R,v,a,s)=G(R^{-1},-R^{-1}v,-R^{-1}(a-vs),-s)$</li>
-</ul>
-<p>由此伽利略变换构成 <strong>伽利略群</strong>。</p>
-<img src = "assets/markdown-img-paste-2020102320402127.png" style="width:100px" align="right" >
-
-<p>我们都希望在惯性系中考虑物理问题。然而，<strong>真实的惯性参考系在宇宙中是不存在的</strong>，我们只能根据实际需要，在一定程度上把非惯性系当做惯性系处理。例如，在实验室做<strong>单摆</strong>实验时，我们把实验室当做惯性系，然而如果要考虑地球的自转，那么实验室就是一个非惯性系。我们认为地球的自转对单摆周期的影响是可以忽略的，于是就可以把实验室当做一个很好的惯性系；但是，在我们研究 <strong>傅科摆</strong>（如右图）<a href="#ref1">$^{[4]}$</a> 的进动现象时，就不得不考虑地球自转带来的 <strong>科里奥利力</strong>，这是一种 <strong>惯性力</strong> (fictitious force)。</p>
-<p>惯性力就是在非惯性参考系中引入的假想力，在<strong>引入惯性力后牛顿定律在非惯性系中成立</strong>。此时的牛顿第二定律写为：$$<br>\bm{F}+\bm{F}_{fictitious}=m\bm{a}           \tag{1.1.3}<br>$$</p>
-<!-- 此处插入一些有关惯性系的推导，可以参考王达的讲义 -->
-
-<p>###1.2 广义坐标与约束<br>在矢量力学中，我们常常选取一个正交的坐标系</p>
-<p>###1.3 达朗贝尔原理<br>###参考资料</p>
-<ol>
-<li><a name="ref1"></a> 维基百科编者. 经典力学[G/OL]. 维基百科, 2020(20200916)[2020-09-16]. <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=%E7%BB%8F%E5%85%B8%E5%8A%9B%E5%AD%A6&amp;oldid=61724970">https://zh.wikipedia.org/w/index.php?title=%E7%BB%8F%E5%85%B8%E5%8A%9B%E5%AD%A6&amp;oldid=61724970</a>.</li>
-<li><a name="ref2"></a>维基百科编者. 仿射空间[G/OL]. 维基百科, 2020(20200829)[2020-08-29]. <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=%E4%BB%BF%E5%B0%84%E7%A9%BA%E9%97%B4&amp;oldid=61394865">https://zh.wikipedia.org/w/index.php?title=%E4%BB%BF%E5%B0%84%E7%A9%BA%E9%97%B4&amp;oldid=61394865</a>.</li>
-<li><a name="ref3"></a>Wikipedia contributors. (2020, October 11). Galilean transformation. In Wikipedia, The Free Encyclopedia. Retrieved 11:44, October 23, 2020, from <a target="_blank" rel="noopener" href="https://en.wikipedia.org/w/index.php?title=Galilean_transformation&amp;oldid=982988847">https://en.wikipedia.org/w/index.php?title=Galilean_transformation&amp;oldid=982988847</a></li>
-<li><a name="ref4"></a> Wikipedia contributors. (2020, October 4). Foucault pendulum. In Wikipedia, The Free Encyclopedia. Retrieved 12:49, October 23, 2020, from <a target="_blank" rel="noopener" href="https://en.wikipedia.org/w/index.php?title=Foucault_pendulum&amp;oldid=981802451">https://en.wikipedia.org/w/index.php?title=Foucault_pendulum&amp;oldid=981802451</a></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://njuhaku.github.io/uncategorized/2020/10/26/My%20First%20Blog.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -284,7 +194,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-10-26 15:11:08 / 修改时间：15:23:47" itemprop="dateCreated datePublished" datetime="2020-10-26T15:11:08+08:00">2020-10-26</time>
+              <time title="创建时间：2020-10-26 15:11:08 / 修改时间：15:24:22" itemprop="dateCreated datePublished" datetime="2020-10-26T15:11:08+08:00">2020-10-26</time>
             </span>
 
           
@@ -385,7 +295,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -468,6 +378,8 @@
 
 
 
+
+  
 
   
 
